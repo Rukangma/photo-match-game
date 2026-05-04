@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="theme-color" content="#667eea">
+    <title>Photo消消乐 - 趣味消除游戏</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <!-- 顶部信息栏 -->
+        <div class="header">
+            <div class="level-info">
+                <span class="level-label">关卡</span>
+                <span class="level-number">第 <span id="currentLevel">1</span> 关</span>
+            </div>
+            <div class="score-info">
+                <span class="score-label">得分</span>
+                <span class="score-number" id="score">0</span>
+            </div>
+        </div>
+
+        <!-- 游戏区域 -->
+        <div class="game-area" id="gameArea">
+            <!-- 图片卡片将动态生成 -->
+        </div>
+
+        <!-- 底部槽位 -->
+        <div class="slot-container">
+            <div class="slot" id="slot">
+                <!-- 选中的卡片将放在这里 -->
+            </div>
+            <div class="slot-warning" id="slotWarning">槽位已满！</div>
+        </div>
+
+        <!-- 游戏结束弹窗 -->
+        <div class="modal" id="gameOverModal">
+            <div class="modal-content">
+                <h2 id="modalTitle">游戏结束</h2>
+                <p id="modalMessage">很遗憾，挑战失败！</p>
+                <div class="modal-score">最终得分: <span id="finalScore">0</span></div>
+                <div class="modal-buttons">
+                    <button class="btn btn-primary" id="restartBtn">重新开始</button>
+                    <button class="btn btn-secondary" id="homeBtn">返回首页</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 胜利弹窗 -->
+        <div class="modal" id="winModal">
+            <div class="modal-content">
+                <h2>🎉 恭喜过关！</h2>
+                <p>你成功通过了第 <span id="winLevel">1</span> 关</p>
+                <div class="modal-score">得分: <span id="winScore">0</span></div>
+                <div class="modal-buttons">
+                    <button class="btn btn-primary" id="nextLevelBtn">下一关</button>
+                    <button class="btn btn-secondary" id="backHomeBtn">返回首页</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 首页 -->
+        <div class="home-screen" id="homeScreen">
+            <div class="home-content">
+                <h1 class="game-title">📷 Photo消消乐</h1>
+                <p class="game-subtitle">轻松消除，快乐闯关</p>
+                <div class="level-select">
+                    <h3>选择关卡</h3>
+                    <div class="level-buttons">
+                        <button class="level-btn active" data-level="1">第1关<br/><span class="level-desc">简单</span></button>
+                        <button class="level-btn" data-level="2">第2关<br/><span class="level-desc">困难</span></button>
+                        <button class="level-btn" data-level="3">第3关<br/><span class="level-desc">地狱</span></button>
+                    </div>
+                </div>
+                <button class="btn btn-start" id="startBtn">开始游戏</button>
+                <button class="btn btn-photo-manager" id="photoManagerBtn">📷 照片管理</button>
+                <div class="game-rules">
+                    <h4>游戏规则</h4>
+                    <ul>
+                        <li>点击图片将其放入底部槽位</li>
+                        <li>3张相同图片自动消除</li>
+                        <li>槽位最多放4张图片</li>
+                        <li>消除所有图片即可过关</li>
+                    </ul>
+                </div>
+                <div class="author-info">
+                    <p>作者：马如康</p>
+                    <p>微信：m3429369947</p>
+                    <p class="feedback-tip">有任何问题与作者微信联系反馈</p>
+                </div>
+                <div class="disclaimer">
+                    <p>尽量不要放有关肖像和重要信息的照片</p>
+                    <p>如有信息泄露与作者无关</p>
+                    <p>本人只是突发奇想随便搞得小游戏，没钱去买网站保护屏障</p>
+                </div>
+            </div>
+        </div>
+        <!-- 音乐控制按钮 -->
+        <button id="musicToggle" class="music-toggle">🔊</button>
+
+        <!-- 照片管理弹窗 -->
+        <div class="modal" id="photoManagerModal">
+            <div class="modal-content photo-manager-content">
+                <h2>📷 照片管理</h2>
+                <div class="photo-manager-actions">
+                    <button class="btn btn-primary" id="addPhotoBtn">➕ 添加照片</button>
+                    <button class="btn btn-secondary" id="closePhotoManager">返回</button>
+                </div>
+                <div class="photo-list" id="photoList">
+                    <!-- 照片将动态生成 -->
+                </div>
+            </div>
+        </div>
+
+        <!-- 隐藏的文件输入 -->
+        <input type="file" id="photoInput" accept="image/*" multiple style="display: none;">
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
